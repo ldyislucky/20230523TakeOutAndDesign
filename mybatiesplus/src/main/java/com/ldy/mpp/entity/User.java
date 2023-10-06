@@ -8,7 +8,7 @@ import lombok.Data;
  * @version : 1.0
  */
 @Data
-@TableName("users")
+@TableName("users")//代表会映射数据库中的 users 表，去掉这个注解会报错
 public class User {
     private Integer id          ;  //integer可以映射数据库中的空值，int不行
     private String username    ;

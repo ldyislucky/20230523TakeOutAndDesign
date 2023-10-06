@@ -18,7 +18,7 @@ public class UserServiceImp extends ServiceImpl<UserMapper, User> implements Use
 
     @Override
     public List<User> queryUsers(String username, Integer status, Double minBalance, Double maxBalance) {
-        return lambdaQuery()
+        return lambdaQuery()  //前面默认的是select * from users
                 .like(username!=null,User::getUsername,username)
                 .eq(status!=null,User::getStatus,status)
                 .gt(minBalance!=null,User::getMinBalance,minBalance)
