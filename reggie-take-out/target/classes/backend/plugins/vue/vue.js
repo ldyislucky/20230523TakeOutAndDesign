@@ -914,7 +914,7 @@
   }
 
   /**
-   * Observer class that is attached to each observed
+   * mode.Observer class that is attached to each observed
    * object. Once attached, the observer converts the target
    * object's property keys into getter/setters that
    * collect dependencies and dispatch updates.
@@ -1881,7 +1881,7 @@
         // if the user intentionally throws the original error in the handler,
         // do not log it twice
         if (e !== err) {
-          logError(e, null, 'config.errorHandler');
+          logError(e, null, 'mode.config.errorHandler');
         }
       }
     }
@@ -2072,7 +2072,7 @@
       config.keyCodes = new Proxy(config.keyCodes, {
         set: function set (target, key, value) {
           if (isBuiltInModifier(key)) {
-            warn(("Avoid overwriting built-in modifier in config.keyCodes: ." + key));
+            warn(("Avoid overwriting built-in modifier in mode.config.keyCodes: ." + key));
             return false
           } else {
             target[key] = value;
@@ -2723,7 +2723,7 @@
   }
 
   /**
-   * Runtime helper for checking keyCodes from config.
+   * Runtime helper for checking keyCodes from mode.config.
    * exposed as Vue.prototype._k
    * passing in eventKeyName as last argument separately for backwards compat
    */
@@ -5376,17 +5376,17 @@
   /*  */
 
   function initGlobalAPI (Vue) {
-    // config
+    // mode.config
     var configDef = {};
     configDef.get = function () { return config; };
     {
       configDef.set = function () {
         warn(
-          'Do not replace the Vue.config object, set individual fields instead.'
+          'Do not replace the Vue.mode.config object, set individual fields instead.'
         );
       };
     }
-    Object.defineProperty(Vue, 'config', configDef);
+    Object.defineProperty(Vue, 'mode.config', configDef);
 
     // exposed util methods.
     // NOTE: these are not considered part of the public API - avoid relying on

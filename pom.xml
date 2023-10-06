@@ -18,6 +18,7 @@
     <modules>
         <module>reggie-take-out</module>
         <module>designmode</module>
+        <module>mybatiesplus</module>
     </modules>
 
     <properties>
