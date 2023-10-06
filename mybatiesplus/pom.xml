@@ -69,6 +69,12 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.23</version>
         </dependency>
+<!--        swagger依赖-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+        </dependency>
+
         <!--        <dependency>-->
         <!--            <groupId>com.alibaba</groupId>-->
         <!--            <artifactId>fastjson</artifactId>-->

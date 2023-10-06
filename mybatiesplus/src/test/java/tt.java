@@ -1,8 +1,10 @@
 import com.ldy.mpp.MppApplication;
+import com.ldy.mpp.controller.AddressTestController;
 import com.ldy.mpp.controller.UserContrller;
 import com.ldy.mpp.domain.query.UserQuery;
 import com.ldy.mpp.entity.User;
 import com.ldy.mpp.mapper.UserMapper;
+import com.ldy.mpp.service.IAddressTestService;
 import com.ldy.mpp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,7 @@ public class tt {
     @Autowired
     private UserContrller userContrller;
     @Autowired
-    private UserService userService;
+    private IAddressTestService iAddressTestService;
     @Test
     public void t1(){
         userMapper.selectById("5");
@@ -34,5 +36,9 @@ public class tt {
         userQuery.setStatus(2);
         List<User> users = userContrller.queryUsers(userQuery);
         users.forEach(System.out::println);
+    }
+    @Test
+    public void t3(){
+        iAddressTestService.getById(66);
     }
 }
