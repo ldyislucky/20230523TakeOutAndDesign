@@ -13,7 +13,7 @@ import java.util.List;
  * @author : ldy
  * @version : 1.0
  */
-
+@Service//这个注解必须添加，否则会报找不到UserService的bean的错
 public class UserServiceImp extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
