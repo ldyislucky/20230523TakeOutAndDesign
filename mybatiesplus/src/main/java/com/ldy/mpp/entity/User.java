@@ -10,13 +10,13 @@ import lombok.Data;
 @Data
 @TableName("users")
 public class User {
-    private int id          ;
+    private Integer id          ;  //integer可以映射数据库中的空值，int不行
     private String username    ;
     private String birthday    ;
     private String sex         ;
     private String address     ;
-    private int balance;
-    private char status;
-    private double minBalance;
-    private double maxBalance;
+    private Integer balance;
+    private Character status;
+    private Double minBalance;
+    private Double maxBalance;
 }
