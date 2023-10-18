@@ -1,13 +1,16 @@
-package com.ldy.mpp.entity;
+package com.ldy.mpp.entity.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.ldy.mpp.entity.AddressTest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -19,9 +22,8 @@ import lombok.experimental.Accessors;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("user")
-public class User implements Serializable {
+//@Accessors(chain = true)  有了@Data就不需要这个注解了
+public class UserVoAddress implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -70,6 +72,9 @@ public class User implements Serializable {
      * 更新时间
      */
     private LocalDateTime updateTime;
-
+    /**
+     * 待确认要不要指定一下数据库表名
+     */
+    private List<AddressTest> addressTests;
 
 }
