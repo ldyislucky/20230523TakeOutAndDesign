@@ -16,5 +16,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/address-test")
 public class AddressTestController {
-
+    public void getAddress(){}
 }

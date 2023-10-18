@@ -44,6 +44,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String s = JSON.toJSONString(userVoAddress);
         System.out.println(s);
 
-
     }
 }
