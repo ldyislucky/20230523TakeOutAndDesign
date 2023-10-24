@@ -1,10 +1,14 @@
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.mpp.MppApplication;
 import com.ldy.mpp.controller.UserController;
 import com.ldy.mpp.controller.UsersController;
 import com.ldy.mpp.domain.query.UserQuery;
+import com.ldy.mpp.entity.User;
 import com.ldy.mpp.entity.Users;
 import com.ldy.mpp.mapper.UsersMapper;
 import com.ldy.mpp.service.IAddressTestService;
+import com.ldy.mpp.service.IUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +30,8 @@ public class tt {
     private IAddressTestService iAddressTestService;
     @Autowired
     private UserController userController;
+    @Autowired
+    private IUserService userService;
     @Test
     public void t1(){
         usersMapper.selectById("5");
@@ -44,6 +50,19 @@ public class tt {
     @Test
     public void t4(){
         userController.getUserVo(1);
+    }
+
+    @Test
+    public void t5(){
+        int pageNo = 1, pageSize = 5;
+// 分页参数
+        Page<User> page = Page.of(pageNo, pageSize);
+// 排序参数, 通过OrderItem来指定
+        page.addOrder(new OrderItem("username", false));
+        userService.page(page);
+
+
+
     }
 
 
