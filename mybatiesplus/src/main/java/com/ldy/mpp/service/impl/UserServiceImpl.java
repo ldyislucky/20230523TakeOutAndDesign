@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ldy.mpp.entity.AddressTest;
 import com.ldy.mpp.entity.User;
-import com.ldy.mpp.entity.vo.UserVoAddress;
+import com.ldy.mpp.domain.vo.UserVoAddress;
 import com.ldy.mpp.mapper.AddressTestMapper;
 import com.ldy.mpp.mapper.UserMapper;
 import com.ldy.mpp.service.IUserService;
