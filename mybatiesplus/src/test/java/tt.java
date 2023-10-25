@@ -64,7 +64,7 @@ public class tt {
     }
     @Test
     public void t6(){
-        int pageNo = 3, pageSize = 5;
+        int pageNo = 1, pageSize = 5;
         // 分页参数
         Page<User> page = Page.of(pageNo, pageSize);
         // 排序参数, 通过OrderItem来指定

@@ -3,6 +3,7 @@ package com.ldy.mpp.domain.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.ldy.mpp.domain.enu.UserStatus;
 import com.ldy.mpp.entity.AddressTest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -56,7 +57,7 @@ public class UserVoAddress implements Serializable {
     /**
      * 使用状态（1正常 2冻结）
      */
-    private Integer status;
+    private UserStatus status;
 
     /**
      * 账户余额

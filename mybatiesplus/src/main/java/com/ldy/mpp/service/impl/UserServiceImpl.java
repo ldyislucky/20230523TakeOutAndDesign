@@ -2,6 +2,7 @@ package com.ldy.mpp.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ldy.mpp.domain.enu.UserStatus;
 import com.ldy.mpp.entity.AddressTest;
 import com.ldy.mpp.entity.User;
 import com.ldy.mpp.domain.vo.UserVoAddress;
@@ -31,7 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public void getUserVo(int id) {
         User user = getById(id);
-        if (user.getStatus()==2){
+        if (user.getStatus()== UserStatus.FREEZE){
             throw new RuntimeException("用户状态异常！");
         }
         UserVoAddress userVoAddress = new UserVoAddress();
