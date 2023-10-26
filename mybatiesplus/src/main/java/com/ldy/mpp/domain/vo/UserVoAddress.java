@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- * 用户表
+ * 用户界面展示信息
  * </p>
  *
  * @author author

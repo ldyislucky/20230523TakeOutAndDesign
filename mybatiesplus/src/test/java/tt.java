@@ -72,7 +72,11 @@ public class tt {
         userService.page(page);
         List<User> users = page.getRecords();
         users.forEach(System.out::println);
+    }
 
+    @Test
+    public void t7(){
+        System.out.println(new UserQuery());
     }
 
 
