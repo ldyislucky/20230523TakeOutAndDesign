@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 /**
  * <p>
@@ -35,6 +36,11 @@ public class UserController {
     @PostMapping("/test")  //接收json格式的数据
     public UserVoAddress gettest(@RequestBody UserQuery userQuery){
         return new UserVoAddress();
+    }
+
+    @PostMapping("/getUVA")//请求中的json中的key必须与类中的属性名称一致
+    public List<UserVoAddress> getUserVoAddress(@RequestBody UserQuery userQuery){
+        return iUserService.getUserVoAddress(userQuery);
     }
 
 }
