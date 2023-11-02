@@ -4,6 +4,8 @@ import com.ldy.reggie.common.R;
 import com.ldy.reggie.entity.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  * 员工信息 服务类
@@ -14,5 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IEmployeeService extends IService<Employee> {
 
-    R<Employee> login(Employee employee);
+    R<Employee> login(HttpServletRequest request, Employee employee);
 }

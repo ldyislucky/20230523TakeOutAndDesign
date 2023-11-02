@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  * 员工信息 前端控制器
@@ -26,8 +28,15 @@ public class EmployeeController {
     private final IEmployeeService iEmployeeService;
 
     @PostMapping("/login")
-    public R<Employee> Login(@RequestBody Employee employee){
-        return iEmployeeService.login(employee);
+    public R<Employee> Login(HttpServletRequest request, @RequestBody Employee employee){
+        return iEmployeeService.login(request,employee);
     }
 
+    @PostMapping("/logout")
+    public R<String> logout(HttpServletRequest request){
+        Long i = (Long) request.getSession().getAttribute("username");
+        request.getSession().removeAttribute("username");
+        String username = "移除的session属性是"+i;
+        return R.success(username);
+    }
 }
