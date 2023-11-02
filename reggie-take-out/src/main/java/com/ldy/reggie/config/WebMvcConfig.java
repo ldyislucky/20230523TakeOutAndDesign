@@ -1,9 +1,7 @@
 package com.ldy.reggie.config;
 
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -27,7 +25,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
          * Registry 注册、登记
          */
         log.info("开始静态资源映射");
-        registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
-        registry.addResourceHandler("/front/**").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("backend/**").addResourceLocations("classpath:/backend/");
+        registry.addResourceHandler("front/**").addResourceLocations("classpath:/front/");
     }
 }
