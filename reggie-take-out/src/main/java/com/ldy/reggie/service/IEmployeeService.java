@@ -17,4 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 public interface IEmployeeService extends IService<Employee> {
 
     R<Employee> login(HttpServletRequest request, Employee employee);
+
+    R<String> addUser(HttpServletRequest request, Employee employee);
 }

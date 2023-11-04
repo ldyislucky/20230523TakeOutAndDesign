@@ -39,4 +39,9 @@ public class EmployeeController {
         String username = "移除的session属性是"+i;
         return R.success(username);
     }
+
+    @PostMapping
+    public R<String> addUser(HttpServletRequest request,@RequestBody Employee employee){
+        return iEmployeeService.addUser(request,employee);
+    }
 }

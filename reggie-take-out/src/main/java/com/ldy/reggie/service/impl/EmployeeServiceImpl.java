@@ -10,6 +10,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -39,6 +40,25 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         }
         request.getSession().setAttribute("username",dbemployee.getId());
         return R.success(dbemployee);
+    }
+
+    @Override
+    public R<String> addUser(HttpServletRequest request, Employee employee) {
+//        1、根据session获取登录用户id
+        Long id = (Long) request.getSession().getAttribute("username");
+//        2、获取登录用户信息,用户id是long型的，不知道用integer传参是否可以正常执行
+        Employee loginEmployee = getById(id);
+//        3、完善新增用户的信息
+        String password = DigestUtils.md5DigestAsHex("123456".getBytes());
+        LocalDateTime now = LocalDateTime.now();
+        employee.setPassword(password);
+        employee.setCreateTime(now);
+        employee.setUpdateTime(now);
+        employee.setCreateUser(id);
+        employee.setUpdateUser(id);
+//        4、插入新增用户
+        save(employee);
+        return R.success("用户添加成功！");
     }
 
 }
