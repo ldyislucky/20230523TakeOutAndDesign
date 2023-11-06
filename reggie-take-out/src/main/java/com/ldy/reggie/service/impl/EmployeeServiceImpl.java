@@ -1,5 +1,7 @@
 package com.ldy.reggie.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.reggie.common.R;
 import com.ldy.reggie.entity.Employee;
 import com.ldy.reggie.mapper.EmployeeMapper;
@@ -7,10 +9,10 @@ import com.ldy.reggie.service.IEmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -59,6 +61,14 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 //        4、插入新增用户
         save(employee);
         return R.success("用户添加成功！");
+    }
+
+    @Override
+    public R<Page<Employee>> getPageUser(Integer page, Integer pageSize, String name) {
+        Page<Employee> pageInfo = new Page<>(page,pageSize);
+        lambdaQuery().like(StrUtil.isNotBlank(name), Employee::getName, name)
+                .page(pageInfo);
+        return R.success(pageInfo);
     }
 
 }

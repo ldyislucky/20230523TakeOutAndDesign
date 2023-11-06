@@ -1,17 +1,15 @@
 package com.ldy.reggie.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.reggie.common.R;
 import com.ldy.reggie.entity.Employee;
 import com.ldy.reggie.service.IEmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -43,5 +41,9 @@ public class EmployeeController {
     @PostMapping
     public R<String> addUser(HttpServletRequest request,@RequestBody Employee employee){
         return iEmployeeService.addUser(request,employee);
+    }
+    @GetMapping("/page")
+    public R<Page<Employee>> getPageUser(@RequestParam("page") Integer page, Integer pageSize, String name){
+        return iEmployeeService.getPageUser(page,pageSize,name);
     }
 }
