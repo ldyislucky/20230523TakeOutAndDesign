@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 
 @SpringBootApplication
-@ComponentScan({"com.ldy.reggie.config","com.ldy.reggie.mapper","com.ldy.reggie.service","com.ldy.reggie.controller"})
+@ComponentScan({"com.ldy.reggie.config","com.ldy.reggie.mapper","com.ldy.reggie.service","com.ldy.reggie.controller","com.ldy.reggie.common"})
 @MapperScan("com.ldy.reggie.mapper")
 @ServletComponentScan//让过滤器生效的配置
 public class ReggieApplication {
