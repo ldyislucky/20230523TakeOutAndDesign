@@ -23,4 +23,6 @@ public interface IEmployeeService extends IService<Employee> {
     R<String> addUser(HttpServletRequest request, Employee employee);
 
     R<Page<Employee>> getPageUser(Integer page, Integer pageSize, String name);
+
+    R<String> updateEmployee(Employee employee);
 }

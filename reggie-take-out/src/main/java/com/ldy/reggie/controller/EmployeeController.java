@@ -46,4 +46,17 @@ public class EmployeeController {
     public R<Page<Employee>> getPageUser(@RequestParam("page") Integer page, Integer pageSize, String name){
         return iEmployeeService.getPageUser(page,pageSize,name);
     }
+
+    @PutMapping
+    public R<String> updateEmployee(@RequestBody Employee employee){
+        return iEmployeeService.updateEmployee(employee);
+    }
+
+    @GetMapping("/{id}")
+    public R<Employee> getEmployee(@PathVariable("id") Long id){ //@PathVariable必不可少，不然匹配不上路径上的参数
+        System.out.println("==================="+id+"========================");
+        Employee byId = iEmployeeService.getById(id);
+        return R.success(byId);
+    }
+
 }

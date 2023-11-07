@@ -9,6 +9,7 @@ import com.ldy.reggie.service.IEmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -70,5 +71,20 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
                 .page(pageInfo);
         return R.success(pageInfo);
     }
+
+    @Override
+    public R<String> updateEmployee(Employee employee) {
+        lambdaUpdate().set(StrUtil.isNotBlank(employee.getName()),Employee::getName,employee.getName())
+                .set(StrUtil.isNotBlank(employee.getUsername()),Employee::getUsername,employee.getUsername())
+                .set(StrUtil.isNotBlank(employee.getPhone()),Employee::getPhone,employee.getPhone())
+                .set(StrUtil.isNotBlank(employee.getSex()),Employee::getSex,employee.getSex())
+                .set(StrUtil.isNotBlank(employee.getIdNumber()),Employee::getIdNumber,employee.getIdNumber())
+                .set(StrUtil.isNotBlank(employee.getStatus().toString()),Employee::getStatus,employee.getStatus())
+                .eq(StrUtil.isNotBlank(employee.getId().toString()),Employee::getId,employee.getId())
+                .eq(StrUtil.isNotBlank(employee.getUsername()),Employee::getUsername,employee.getUsername())
+                .update();
+        return R.success("更新成功！");
+    }
+
 
 }
