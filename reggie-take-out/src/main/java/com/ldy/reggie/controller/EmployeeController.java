@@ -54,7 +54,6 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public R<Employee> getEmployee(@PathVariable("id") Long id){ //@PathVariable必不可少，不然匹配不上路径上的参数
-        System.out.println("==================="+id+"========================");
         Employee byId = iEmployeeService.getById(id);
         return R.success(byId);
     }

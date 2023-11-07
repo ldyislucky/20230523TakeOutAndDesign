@@ -1,8 +1,10 @@
 package com.ldy.reggie.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.reggie.common.R;
+import com.ldy.reggie.common.ThreadLocalLong;
 import com.ldy.reggie.entity.Employee;
 import com.ldy.reggie.mapper.EmployeeMapper;
 import com.ldy.reggie.service.IEmployeeService;
@@ -47,20 +49,23 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Override
     public R<String> addUser(HttpServletRequest request, Employee employee) {
+
 //        1、根据session获取登录用户id
         Long id = (Long) request.getSession().getAttribute("username");
+        ThreadLocalLong.setLong(id);
 //        2、获取登录用户信息,用户id是long型的，不知道用integer传参是否可以正常执行
         Employee loginEmployee = getById(id);
 //        3、完善新增用户的信息
         String password = DigestUtils.md5DigestAsHex("123456".getBytes());
-        LocalDateTime now = LocalDateTime.now();
+//        LocalDateTime now = LocalDateTime.now();
         employee.setPassword(password);
-        employee.setCreateTime(now);
-        employee.setUpdateTime(now);
-        employee.setCreateUser(id);
-        employee.setUpdateUser(id);
+//        employee.setCreateTime(now);
+//        employee.setUpdateTime(now);
+//        employee.setCreateUser(id);
+//        employee.setUpdateUser(id);
 //        4、插入新增用户
         save(employee);
+        ThreadLocalLong.removeLong();
         return R.success("用户添加成功！");
     }
 
@@ -74,15 +79,18 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Override
     public R<String> updateEmployee(Employee employee) {
-        lambdaUpdate().set(StrUtil.isNotBlank(employee.getName()),Employee::getName,employee.getName())
-                .set(StrUtil.isNotBlank(employee.getUsername()),Employee::getUsername,employee.getUsername())
-                .set(StrUtil.isNotBlank(employee.getPhone()),Employee::getPhone,employee.getPhone())
-                .set(StrUtil.isNotBlank(employee.getSex()),Employee::getSex,employee.getSex())
-                .set(StrUtil.isNotBlank(employee.getIdNumber()),Employee::getIdNumber,employee.getIdNumber())
-                .set(StrUtil.isNotBlank(employee.getStatus().toString()),Employee::getStatus,employee.getStatus())
-                .eq(StrUtil.isNotBlank(employee.getId().toString()),Employee::getId,employee.getId())
-                .eq(StrUtil.isNotBlank(employee.getUsername()),Employee::getUsername,employee.getUsername())
-                .update();
+        ThreadLocalLong.setLong(employee.getId());
+        LambdaUpdateChainWrapper<Employee> lambdaUpdateChainWrapper = lambdaUpdate().set(StrUtil.isNotBlank(employee.getName()), Employee::getName, employee.getName())
+                .set(StrUtil.isNotBlank(employee.getUsername()), Employee::getUsername, employee.getUsername())
+                .set(StrUtil.isNotBlank(employee.getPhone()), Employee::getPhone, employee.getPhone())
+                .set(StrUtil.isNotBlank(employee.getSex()), Employee::getSex, employee.getSex())
+                .set(StrUtil.isNotBlank(employee.getIdNumber()), Employee::getIdNumber, employee.getIdNumber())
+                .set(StrUtil.isNotBlank(employee.getStatus().toString()), Employee::getStatus, employee.getStatus())
+                .eq(StrUtil.isNotBlank(employee.getId().toString()), Employee::getId, employee.getId())
+                .or()
+                .eq(StrUtil.isNotBlank(employee.getUsername()), Employee::getUsername, employee.getUsername());
+        lambdaUpdateChainWrapper.update();
+        ThreadLocalLong.removeLong();
         return R.success("更新成功！");
     }
 
