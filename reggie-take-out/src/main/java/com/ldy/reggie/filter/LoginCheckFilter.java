@@ -3,6 +3,7 @@ package com.ldy.reggie.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.ldy.reggie.common.R;
+import com.ldy.reggie.common.ThreadLocalLong;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -47,6 +48,8 @@ public class LoginCheckFilter implements Filter {
             return;
         }
         if (request.getSession().getAttribute("username")!=null){
+            Long id  = (Long) request.getSession().getAttribute("username");
+            ThreadLocalLong.setLong(id);
             filterChain.doFilter(request,response);
             return;
         }

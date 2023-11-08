@@ -52,7 +52,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
 //        1、根据session获取登录用户id
         Long id = (Long) request.getSession().getAttribute("username");
-        ThreadLocalLong.setLong(id);
+
 //        2、获取登录用户信息,用户id是long型的，不知道用integer传参是否可以正常执行
         Employee loginEmployee = getById(id);
 //        3、完善新增用户的信息
@@ -65,7 +65,6 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 //        employee.setUpdateUser(id);
 //        4、插入新增用户
         save(employee);
-        ThreadLocalLong.removeLong();
         return R.success("用户添加成功！");
     }
 
