@@ -77,22 +77,22 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         return R.success(pageInfo);
     }
 
-    @Override
-    public R<String> updateEmployee(Employee employee) {
-        ThreadLocalLong.setLong(employee.getId());
-        LambdaUpdateChainWrapper<Employee> lambdaUpdateChainWrapper = lambdaUpdate().set(StrUtil.isNotBlank(employee.getName()), Employee::getName, employee.getName())
-                .set(StrUtil.isNotBlank(employee.getUsername()), Employee::getUsername, employee.getUsername())
-                .set(StrUtil.isNotBlank(employee.getPhone()), Employee::getPhone, employee.getPhone())
-                .set(StrUtil.isNotBlank(employee.getSex()), Employee::getSex, employee.getSex())
-                .set(StrUtil.isNotBlank(employee.getIdNumber()), Employee::getIdNumber, employee.getIdNumber())
-                .set(StrUtil.isNotBlank(employee.getStatus().toString()), Employee::getStatus, employee.getStatus())
-                .eq(StrUtil.isNotBlank(employee.getId().toString()), Employee::getId, employee.getId())
-                .or()
-                .eq(StrUtil.isNotBlank(employee.getUsername()), Employee::getUsername, employee.getUsername());
-        lambdaUpdateChainWrapper.update();
-        ThreadLocalLong.removeLong();
-        return R.success("更新成功！");
-    }
+//    @Override
+//    public R<String> updateEmployee(Employee employee) {
+//        ThreadLocalLong.setLong(employee.getId());
+//        LambdaUpdateChainWrapper<Employee> lambdaUpdateChainWrapper = lambdaUpdate().set(StrUtil.isNotBlank(employee.getName()), Employee::getName, employee.getName())
+//                .set(StrUtil.isNotBlank(employee.getUsername()), Employee::getUsername, employee.getUsername())
+//                .set(StrUtil.isNotBlank(employee.getPhone()), Employee::getPhone, employee.getPhone())
+//                .set(StrUtil.isNotBlank(employee.getSex()), Employee::getSex, employee.getSex())
+//                .set(StrUtil.isNotBlank(employee.getIdNumber()), Employee::getIdNumber, employee.getIdNumber())
+//                .set(StrUtil.isNotBlank(employee.getStatus().toString()), Employee::getStatus, employee.getStatus())
+//                .eq(StrUtil.isNotBlank(employee.getId().toString()), Employee::getId, employee.getId())
+//                .or()
+//                .eq(StrUtil.isNotBlank(employee.getUsername()), Employee::getUsername, employee.getUsername());
+//        lambdaUpdateChainWrapper.update();
+//        ThreadLocalLong.removeLong();
+//        return R.success("更新成功！");
+//    }
 
 
 }

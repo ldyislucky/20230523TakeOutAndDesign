@@ -24,5 +24,5 @@ public interface IEmployeeService extends IService<Employee> {
 
     R<Page<Employee>> getPageUser(Integer page, Integer pageSize, String name);
 
-    R<String> updateEmployee(Employee employee);
+//    R<String> updateEmployee(Employee employee);
 }

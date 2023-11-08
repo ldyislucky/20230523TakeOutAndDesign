@@ -3,6 +3,7 @@ package com.ldy.reggie.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.reggie.common.R;
+import com.ldy.reggie.common.ThreadLocalLong;
 import com.ldy.reggie.entity.Employee;
 import com.ldy.reggie.service.IEmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,10 @@ public class EmployeeController {
 
     @PutMapping
     public R<String> updateEmployee(@RequestBody Employee employee){
-        return iEmployeeService.updateEmployee(employee);
+        ThreadLocalLong.setLong(employee.getId());
+        iEmployeeService.updateById(employee);
+        ThreadLocalLong.removeLong();
+        return R.success("员工信息更新成功！");
     }
 
     @GetMapping("/{id}")
