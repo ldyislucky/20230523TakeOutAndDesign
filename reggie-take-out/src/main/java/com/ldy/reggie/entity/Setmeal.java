@@ -12,30 +12,25 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 菜品管理
+ * 套餐
  * </p>
  *
  * @author author
- * @since 2023-11-08
+ * @since 2023-11-09
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("dish")
-public class Dish implements Serializable {
+@TableName("setmeal")
+public class Setmeal implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    /**
-     * 菜品名称
-     */
-    private String name;
 
     /**
      * 菜品分类id
@@ -43,19 +38,24 @@ public class Dish implements Serializable {
     private Long categoryId;
 
     /**
-     * 菜品价格
+     * 套餐名称
+     */
+    private String name;
+
+    /**
+     * 套餐价格
      */
     private BigDecimal price;
 
     /**
-     * 商品码
+     * 状态 0:停用 1:启用
      */
-    private String code;
+    private Integer status;
 
     /**
-     * 图片
+     * 编码
      */
-    private String image;
+    private String code;
 
     /**
      * 描述信息
@@ -63,14 +63,9 @@ public class Dish implements Serializable {
     private String description;
 
     /**
-     * 0 停售 1 起售
+     * 图片
      */
-    private Integer status;
-
-    /**
-     * 顺序
-     */
-    private Integer sort;
+    private String image;
 
     /**
      * 创建时间

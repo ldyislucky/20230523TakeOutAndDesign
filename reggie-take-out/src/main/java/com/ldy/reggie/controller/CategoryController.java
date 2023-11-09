@@ -25,7 +25,7 @@ public class CategoryController {
     private final ICategoryService iCategoryService;
     @GetMapping("/page")
     public R<Page<Category>> getPage(Integer page,Integer pageSize){
-        Page<Category> categoryPage = new Page<>();
+        Page<Category> categoryPage = new Page<>(page,pageSize);
         OrderItem sort = new OrderItem("sort", true);
         categoryPage.addOrder(sort);
         iCategoryService.page(categoryPage);
@@ -35,6 +35,13 @@ public class CategoryController {
     public R<String> addCategory(@RequestBody Category category){
         iCategoryService.save(category);
         return R.success("分类添加成功!");
+    }
+    @PutMapping
+    public R<String> updateCategory(@RequestBody Category category){
+        Category category1 = iCategoryService.current(category);
+        category.setId(category1.getId());
+        iCategoryService.updateById(category);
+        return R.success("修改成功！");
     }
 
 }
