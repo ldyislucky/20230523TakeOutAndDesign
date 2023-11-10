@@ -7,6 +7,7 @@ import com.ldy.reggie.entity.Dish;
 import com.ldy.reggie.service.IDishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,11 @@ public class DishController {
         Page<Dish> dishPage = new Page<>(page,pageSize);
         iDishService.page(dishPage);
         return R.success(dishPage);
+    }
+    @GetMapping("/{id}")
+    public R<Dish> getById(@PathVariable("id") Integer id){
+        Dish dish = iDishService.getById(id);
+        return R.success(dish);
     }
 
 }

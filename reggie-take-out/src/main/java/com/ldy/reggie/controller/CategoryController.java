@@ -1,6 +1,7 @@
 package com.ldy.reggie.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.reggie.common.R;
@@ -9,6 +10,8 @@ import com.ldy.reggie.service.ICategoryService;
 import com.ldy.reggie.service.IEmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -42,6 +45,15 @@ public class CategoryController {
         category.setId(category1.getId());
         iCategoryService.updateById(category);
         return R.success("修改成功！");
+    }
+    @GetMapping("/list")
+    public R<List<Category>> getListByType(Integer type){
+        LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Category::getType,type )
+                .orderByAsc(Category::getSort)
+                .orderByAsc(Category::getName);
+        List<Category> list = iCategoryService.list(wrapper);
+        return R.success(list);
     }
 
 }
