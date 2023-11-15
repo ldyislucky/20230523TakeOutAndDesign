@@ -59,9 +59,13 @@ public class DishController {
         return R.success(dishDTOPage);
     }
     @GetMapping("/{id}")
-    public R<Dish> getById(@PathVariable("id") Integer id){
+    public R<DishDTO> getById(@PathVariable("id") Long id){
         Dish dish = iDishService.getById(id);
-        return R.success(dish);
+        List<DishFlavor> dishFlavorList = iDishFlavorService.getByDishId(dish.getId());
+        DishDTO dishDTO = new DishDTO();
+        BeanUtil.copyProperties(dish,dishDTO);
+        dishDTO.setFlavors(dishFlavorList);
+        return R.success(dishDTO);
     }
 
     @PostMapping
