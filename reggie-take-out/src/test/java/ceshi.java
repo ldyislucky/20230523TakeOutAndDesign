@@ -17,7 +17,7 @@ import java.util.List;
 @SpringBootTest(classes = ReggieApplication.class)
 public class ceshi {
     @Autowired
-    private RedisTemplate<Object,Object> redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
     @Test
     public void t1(){
         Employee employee = new Employee();
@@ -28,8 +28,8 @@ public class ceshi {
     }
     @Test
     public void t2(){
-        SetOperations<Object, Object> operations = redisTemplate.opsForSet();
-        operations.add("7","退钱！");
+        SetOperations<String, Object> operations = redisTemplate.opsForSet();
+        operations.add("7","去你的！");
         System.out.println(operations.members("7"));
     }
 }
