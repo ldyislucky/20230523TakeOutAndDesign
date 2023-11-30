@@ -1,5 +1,6 @@
 package com.ldy.reggie.service.impl;
 
+import com.ldy.reggie.dto.SetmealDTO;
 import com.ldy.reggie.entity.Setmeal;
 import com.ldy.reggie.mapper.SetmealMapper;
 import com.ldy.reggie.service.ISetmealService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> implements ISetmealService {
 
+    @Override
+    public void addSetmealDTO(SetmealDTO setmealDTO) {
+
+    }
 }

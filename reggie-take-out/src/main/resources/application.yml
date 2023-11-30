@@ -4,6 +4,8 @@ spring:
   application:
     #应用的名称
     name: take_out
+  profiles:
+    active: dev
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -34,6 +36,11 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
-reggie:
-  path: /root/图片
+
+
+
+
+
+
+
 

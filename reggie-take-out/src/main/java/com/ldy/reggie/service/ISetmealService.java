@@ -1,5 +1,6 @@
 package com.ldy.reggie.service;
 
+import com.ldy.reggie.dto.SetmealDTO;
 import com.ldy.reggie.entity.Setmeal;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISetmealService extends IService<Setmeal> {
 
+    void addSetmealDTO(SetmealDTO setmealDTO);
 }
