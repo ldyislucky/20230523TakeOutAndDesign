@@ -83,4 +83,8 @@ public class DishController {
         iDishService.addDishDTO(dishDTO);
         return R.success("菜品添加成功！");
     }
+    @GetMapping("/list")
+    public R<List<Dish>> getDishList(Long categoryId){
+        return iDishService.getdishList(categoryId);
+    }
 }

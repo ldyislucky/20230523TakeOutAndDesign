@@ -7,9 +7,9 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-      username: root
-      password: root
+      url: jdbc:mysql://192.168.46.130:3306/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: general
+      password: general
   redis:
     host: 192.168.46.130  # Redis 服务器地址
     port: 6379       # Redis 服务器端口号
@@ -23,6 +23,9 @@ spring:
         max-idle: 8
         # 连接池最小空闲连接数，可选，默认值为0
         min-idle: 0
+  cache:
+    redis:
+      time-to-live: 1800000 #缓存的过期时间被设置为1800000毫秒（30分钟）
 mybatis-plus:
   configuration:
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
@@ -32,5 +35,5 @@ mybatis-plus:
     db-config:
       id-type: ASSIGN_ID
 reggie:
-  path: D:/D/document/javaprograms1/caogao/img/
+  path: /root/图片
 

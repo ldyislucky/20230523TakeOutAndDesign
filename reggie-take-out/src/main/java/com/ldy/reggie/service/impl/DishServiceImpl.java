@@ -1,5 +1,6 @@
 package com.ldy.reggie.service.impl;
 
+import com.ldy.reggie.common.R;
 import com.ldy.reggie.dto.DishDTO;
 import com.ldy.reggie.entity.Dish;
 import com.ldy.reggie.entity.DishFlavor;
@@ -41,5 +42,12 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements ID
             dishFlavor.setDishId(dishId);
         }
         iDishFlavorService.saveBatch(flavors);
+    }
+
+    @Override
+    public R<List<Dish>> getdishList(Long categoryId) {
+        List<Dish> dishList = lambdaQuery().eq(Dish::getCategoryId, categoryId)
+                .list();
+        return R.success(dishList);
     }
 }

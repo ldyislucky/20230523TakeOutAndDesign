@@ -3,10 +3,12 @@ package com.ldy.reggie.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldy.reggie.common.R;
+import com.ldy.reggie.dto.SetmealDTO;
 import com.ldy.reggie.entity.Setmeal;
 import com.ldy.reggie.service.ISetmealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +32,11 @@ public class SetmealController {
         iSetmealService.page(setmealPage);
         return R.success(setmealPage);
     }
+    @GetMapping("{id}")
+    public R<SetmealDTO> getSetmealDTO(long id){
+        return null;
+    }
+
 
 
 }
