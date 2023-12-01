@@ -18,4 +18,6 @@ public interface ISetmealService extends IService<Setmeal> {
     void addSetmealDTO(SetmealDTO setmealDTO);
 
     R<SetmealDTO> getSetmealDTO(long id);
+
+    void updateSetmealDTO(SetmealDTO setmealDTO);
 }

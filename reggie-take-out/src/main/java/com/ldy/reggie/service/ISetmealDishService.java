@@ -1,7 +1,10 @@
 package com.ldy.reggie.service;
 
+import com.ldy.reggie.dto.SetmealDTO;
 import com.ldy.reggie.entity.SetmealDish;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISetmealDishService extends IService<SetmealDish> {
 
+    void updateBatch(SetmealDTO setmealDTO);
 }

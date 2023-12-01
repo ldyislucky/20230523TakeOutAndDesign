@@ -59,4 +59,10 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         setmealDTO.setSetmealDishes(setmealDishes);
         return R.success(setmealDTO);
     }
+    @Transactional
+    @Override
+    public void updateSetmealDTO(SetmealDTO setmealDTO) {
+        this.updateById(setmealDTO);
+        iSetmealDishService.updateBatch(setmealDTO);
+    }
 }
