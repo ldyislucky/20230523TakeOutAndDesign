@@ -28,15 +28,16 @@ public class SetmealController {
         iSetmealService.page(setmealPage);
         return R.success(setmealPage);
     }
-    @GetMapping("{id}")
-    public R<SetmealDTO> getSetmealDTO(long id){
-        return null;
+    @GetMapping("{id}")//这种请求方式@PathVariable("id")必不可少，不然路径匹配不上
+    public R<SetmealDTO> getSetmealDTO(@PathVariable("id") long id){
+        return iSetmealService.getSetmealDTO(id);
     }
     @PostMapping
     public R<String> addSetmealDTO(@RequestBody SetmealDTO setmealDTO){
         iSetmealService.addSetmealDTO(setmealDTO);
         return R.success("新增套餐成功！");
     }
+
 
 
 
