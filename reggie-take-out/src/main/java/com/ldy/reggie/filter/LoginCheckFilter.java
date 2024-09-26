@@ -56,8 +56,8 @@ public class LoginCheckFilter implements Filter {
         log.info("用户未登录！");
         response.getWriter().write(JSON.toJSONString(R.error("NOTLOGIN")));
     }
-    public boolean check(String[] urls,String requestURI){
-        for (String url : urls){
+    public boolean check(String[] uris,String requestURI){
+        for (String url : uris){
             boolean match = ANT_PATH_MATCHER.match(url, requestURI);
             if (match){
                 return match;
