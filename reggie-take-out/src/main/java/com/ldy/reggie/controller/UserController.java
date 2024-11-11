@@ -16,9 +16,15 @@ public class UserController {
 
 
     @GetMapping("/transfer")
-   @Transactional
+  // @Transactional
     public void m1(){
+        /**
+         * 目前的这种方式带上@Transactional这个事务也是可以回滚的
+         * 但是注释@Transactional之后，上面这个userService.transfer(100)；就无法正常回滚了
+         */
 
+        userService.transfer(100);
+        int a= 1/0;
         userService.transfer(100);
         /**
          * m1方法上的@Transactional无论是否注释掉，如果在事务之后突然有一个报错 事务是不会回滚的。
